@@ -8,6 +8,6 @@ export default {
     password: 'Password',
     enter: 'Enter',
     entering: 'Entering...',
-    failed_to_login: 'Failed to login',
+    invalid_login_credentials: 'Invalid login credentials',
   },
 } as const;
