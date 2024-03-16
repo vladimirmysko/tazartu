@@ -1,5 +1,7 @@
 export default {
   loading: 'Loading...',
+  search: 'Search',
+  checking: 'Checking',
   login: {
     title: 'Login / tazartu.',
     welcome_back: 'Welcome back',
@@ -23,5 +25,22 @@ export default {
     select_file: 'Select file',
     start_checking: 'Upload',
     uploading: 'Uploading...',
+  },
+  history: {
+    title: 'History - Tazartu',
+    refresh: 'Refresh',
+    refreshing: 'Refreshing...',
+    sort_by_date: 'Sort by date',
+    sort_by_originality: 'Sort by originality',
+    sort_by_name: 'Sort by name',
+    sort_order_ascending: 'Ascending',
+    sort_order_descending: 'Descending',
+    id: 'Id',
+    added_at: 'Added at',
+    originality: 'Originality',
+    recommendation_from_ai: 'Recommendation from AI',
+    get_recommendation_from_ai: 'Get recommendation from AI',
+    translation_artifacts: 'Translation artifacts',
+    detect_translation_artifacts_with_ai: 'Detect translation artifacts with AI',
   },
 } as const;
