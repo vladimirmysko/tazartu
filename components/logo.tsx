@@ -11,7 +11,7 @@ export function Logo({ className, ...props }: LogoProps) {
       )}
       {...props}
     >
-      Tazartu
+      tazartu.
     </div>
   );
 }

@@ -14,7 +14,9 @@ export async function login(prevState: { error: string }, formData: FormData) {
   const password = formData.get('password')?.toString();
 
   if (!username || !password) {
-    throw new Error('Credentials not found');
+    return {
+      error: t('login.invalid_login_credentials'),
+    };
   }
 
   const findedUser = await prisma.user.findUnique({ where: { username } });
