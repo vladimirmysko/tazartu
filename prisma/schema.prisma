@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String     @id @default(uuid())
+  username     String     @unique
+  passwordHash String     @map("password_hash")
+  documents    Document[]
+
+  @@map("users")
+}
+
+enum AIResponseStatus {
+  EMPTY
+  GENERATING
+  DONE
+}
+
+model Document {
+  id                              String           @id
+  name                            String
+  addedAt                         DateTime         @default(now()) @map("added_at")
+  originality                     Int?
+  text                            String
+  qualityUpgradeSuggestions       String?          @map("quality_upgrade_suggestions")
+  qualityUpgradeSuggestionsStatus AIResponseStatus @default(EMPTY) @map("quality_upgrade_suggestions_status")
+  user                            User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId                          String           @map("user_id")
+  searchPhrases                   SearchPhrase[]
+  URLs                            URL[]
+
+  @@map("documents")
+}
+
+model SearchPhrase {
+  id         Int      @id @default(autoincrement())
+  text       String
+  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  documentId String   @map("document_id")
+
+  @@map("search_phrases")
+}
+
+model URL {
+  id         Int      @id @default(autoincrement())
+  text       String
+  document   Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  documentId String   @map("document_id")
+
+  @@map("urls")
+}
